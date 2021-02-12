@@ -134,7 +134,7 @@ You can change the configuration items in <span>secret.tfvars</span> first then 
 
 ```console
 $ git clone https://github.com/samuelhbne/TechChallengeApp-Deployment.git
-$ cd simple-sinatra-app-deploy/aws
+$ cd TechChallengeApp-Deployment/aws
 $ cp -a secret.tfvars.sample secret.tfvars
 $ vim secret.tfvars
 ...
