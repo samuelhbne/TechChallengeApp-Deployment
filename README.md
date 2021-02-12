@@ -156,7 +156,7 @@ elb_dns_name will be displayed as the result after "terraform apply" execution. 
 
 ## Recovering App state after fresh stack deployment
 
-App state can be restored through RDS cluster restoration from DB snapshot, which can be done through RDS console pannel.
+App state can be restored through RDS cluster restoration from an existing DB snapshot, which can be done through RDS console pannel.
 
 ## Undeploying stack
 
@@ -165,7 +165,7 @@ As a terraform stack, "terraform destroy" command will unprovision all AWS resou
 ```console
 $ terraform destroy
 ...
-Destroy complete! Resources: 16 destroyed.
+Destroy complete! Resources: 23 destroyed.
 $
 ```
 
