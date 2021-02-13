@@ -2,14 +2,13 @@ resource "aws_rds_cluster" "pgcluster1" {
   cluster_identifier        = "${var.ENV}-aurora-cluster-pg"
   engine                    = "aurora-postgresql"
   engine_version            = "10.7"
-  availability_zones        = var.availability_zones
   database_name             = var.DBNAME
   master_username           = var.PGUSER
   master_password           = var.PGPASS
   backup_retention_period   = 5
   apply_immediately         = true
   preferred_backup_window   = "07:00-09:00"
-  final_snapshot_identifier = "${var.ENV}-aurora-cluster-pg-backup-${formatdate("YYYYMMDD-hhmmss-ZZZ", timestamp())}"
+  final_snapshot_identifier = "${var.ENV}-aurora-cluster-pg-backup-final"
   db_subnet_group_name      = aws_db_subnet_group.db_subnet_group.name
   vpc_security_group_ids    = [aws_security_group.rds_sg1.id]
 }
@@ -31,6 +30,8 @@ resource "aws_db_subnet_group" "db_subnet_group" {
     Name = "Database subnet group"
   }
 }
+
+
 
 
 output "db_reader_endpoint" {
