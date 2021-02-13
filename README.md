@@ -6,7 +6,7 @@ As a simple application, the system was designed with moderate cost association:
 
 The TechChallengeApp web application will be inside an Auto Scaling Group (ASG) hence instance replacement will happen if there's a failure. Only port 80 will be publicly reachable for web nodes while ssh access will be available through Bastion host for instances maintenance. Like all other configuration items, the AllowList network can be re-configured via the entries in <span>secret.tfvars</span> residents in folder aws/ which can be found in the project root folder.
 
-Accodring to the requests of TechChallengeApp, a 2-instance RDS PostgreSQL 10.7 cluster will be created as the DB backend of the application.
+Accodring to the compatibility requests of TechChallengeApp, a 2-instance RDS PostgreSQL 10.7 cluster will be created as the DB backend of the application.
 
 A basic dashboard will be created after deployment for important application metrics watching.
 
@@ -135,6 +135,15 @@ You can change the configuration items in <span>secret.tfvars</span> first then 
 ```console
 $ git clone https://github.com/samuelhbne/TechChallengeApp-Deployment.git
 $ cd TechChallengeApp-Deployment/aws
+$ cat secret.tfvars.sample
+AWS_REGION              = "ap-southeast-2"
+AWS_ACCESS_KEY_ID       = "XXXXXXXXXXXXXXXXXXXX"
+AWS_SECRET_ACCESS_KEY   = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+PUBLIC_KEY              = "ssh-rsa XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX sam@mail.com"
+PGUSER                  = "xxxxxxxx"
+PGPASS                  = "xxxxxxxx"
+DBNAME                  = "techchallenge"
+ENV                     = "tech-challenge-syd"
 $ cp -a secret.tfvars.sample secret.tfvars
 $ vim secret.tfvars
 ...
@@ -163,7 +172,7 @@ App state can be restored through RDS cluster restoration from an existing DB sn
 As a terraform stack, "terraform destroy" command will unprovision all AWS resources it deployed previously.
 
 ```console
-$ terraform destroy
+$ terraform destroy -var-file=secret.tfvars
 ...
 Destroy complete! Resources: 23 destroyed.
 $
