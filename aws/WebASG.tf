@@ -7,10 +7,10 @@ resource "aws_autoscaling_group" "web_asg1" {
     }
     desired_capacity                = 1
     min_size                        = 1
-    max_size                        = 2
+    max_size                        = 5
     load_balancers                  = [aws_elb.elb1.name]
     health_check_type               = "ELB"
-    health_check_grace_period       = 300
+    health_check_grace_period       = 30
     enabled_metrics                 = [
         "GroupDesiredCapacity",
         "GroupInServiceInstances",
