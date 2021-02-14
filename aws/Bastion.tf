@@ -10,6 +10,9 @@ resource "aws_instance" "bastion1" {
   }
 }
 
+
+
+
 output "bastion_host_ip_address" {
   description                 = "Bastion host IP address"
   value                       = aws_instance.bastion1.public_ip

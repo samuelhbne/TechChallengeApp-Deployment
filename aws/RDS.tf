@@ -1,4 +1,6 @@
 resource "aws_rds_cluster" "pgcluster1" {
+  # aws_rds_cluster does not honor availability_zones parameter
+  # https://github.com/hashicorp/terraform/issues/3754
   cluster_identifier        = "${var.ENV}-aurora-cluster-pg"
   engine                    = "aurora-postgresql"
   engine_version            = "10.7"
